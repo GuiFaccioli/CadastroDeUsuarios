@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuários</title>
+</head>
+<body>
+
+  <h1>Cadastro</h1>
+
+  <!-- Formulário de cadastro -->
+  <form id="formCadastro">
+    <input type="text"  id="nome"  placeholder="Nome"  required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="number"id="age"   placeholder="Idade" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <!-- Onde a mensagem de sucesso/erro aparece -->
+  <p id="mensagem"></p>
+
+  <!-- Onde a lista de usuários aparece -->
+  <ul id="listaUsuarios"></ul>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+```
+
+**Linha por linha:**
+```
+<form id="formCadastro">
+→ O id é essencial — o JS usa para capturar o evento de submit
+
+<input id="nome">
+→ Cada id é usado pelo JS para pegar o valor digitado
+
+<p id="mensagem">
+→ Onde o JS vai escrever o resultado da operação
+
+<ul id="listaUsuarios">
+→ Onde o JS vai renderizar os usuários buscados do banco
+
+<script src="scripts.js">

@@ -1,0 +1,52 @@
+const { Router } = require("express");
+
+module.exports = (connection) => {
+  const router = Router();
+
+  // GET — listar todos
+  router.get("/", (req, res) => {
+    const sql = "SELECT * FROM usuario";
+
+    connection.query(sql, (erro, resultados) => {
+      if (erro) {
+        return res.status(500).json({ erro: "Erro ao buscar usuários" });
+      }
+      res.json(resultados);
+    });
+  });
+
+  // POST — cadastrar
+  router.post("/", (req, res) => {
+    const { Nome, email, age } = req.body;
+
+    // Validação básica
+    if (!Nome || !email || !age) {
+      return res.status(400).json({ erro: "Todos os campos são obrigatórios" });
+    }
+
+    const sql = "INSERT INTO usuario (Nome, email, age) VALUES (?, ?, ?)";
+    const valores = [Nome, email, age];
+
+    connection.query(sql, valores, (erro, resultado) => {
+      if (erro) {
+        return res.status(500).json({ erro: "Erro ao cadastrar usuário" });
+      }
+      res.status(201).json({
+        mensagem: "Usuário cadastrado com sucesso",
+        id: resultado.insertId,
+      });
+    });
+  });
+
+  // DELETE — remover
+  router.delete("/:id", (req, res) => {
+    const { id } = req.params;
+
+    connection.query("DELETE FROM usuario WHERE id = ?", [id], (erro) => {
+      if (erro) return res.status(500).json({ erro: "Erro ao deletar" });
+      res.status(204).send();
+    });
+  });
+
+  return router;
+};
