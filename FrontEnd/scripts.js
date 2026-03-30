@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3001";
 
 // ─── Cadastrar usuário ────────────────────────────────────
 const form = document.getElementById("formCadastro");

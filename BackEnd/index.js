@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const cors = require("cors"); // ← ESSENCIAL para o frontend acessar!
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Middlewares
 app.use(cors()); // permite requisições do frontend
